@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Object</title>
+    <link href="css/docs.min.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+        body {
+            min-height: 2000px;
+            padding-top: 70px;
+        }
+        
+        .iframe {
+            width: 100%;
+            min-height: 500px;
+        }
+    </style>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="js/object.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        $(document).load(function() {
+
+        });
+    </script>
+</head>
+
+<body>
+    <div class="container bs-docs-container">
+        <div class="row">
+            <div class="col-md-9" role="mail">
+                <div class="bs-docs-section">
+                    <h1 id="Object" class="page-header">
+                    習題
+                    </h1>
+                    <h2 class="">
+                        
+                    </h2>
+                    <p>擴充原有的物件，增加原型，減少重覆定義原型</p>
+                    <div class="bs-example">
+                        <ul>
+                            <li>定義一個Employee類別包含:</li>
+                            <ul>
+                                <li>
+                                    name, baseSalary兩個欄位
+                                </li>
+                                <li>
+                                    提供getSalary方法取出薪資
+                                </li>
+                            </ul>
+                            <li>定義一個Sales與Manager為Employee的子類別</li>
+                            <ul>
+                                <li>Sales增加業績(performance)欄位</li>
+                                <li>Manager增加績效(performance)欄位</li>
+                                <li>Sales的薪資等於底薪+業績乘3%</li>
+                                <li>Manager的薪資等於底薪+績效成績換成獎金</li>
+                            </ul>
+                        </ul>
+                    </div>
+                    <figure class="highlight">
+                        <pre>
+                            <code class="language-html" data-lang="html">
+function Employee(name, baseSalary) {
+    this.name = name;
+    this.baseSalary = baseSalary;
+}
+
+Employee.prototype.getSalary = function () {
+    return this.baseSalary;
+};
+
+var resnick = new Employee("Yuan-Hung", 22000);
+console.log(resnick.getSalary());
+
+function Sales(name, baseSalary, performance) {
+    Employee.call(this, name, baseSalary);
+    this.performance = performance;
+}
+
+Sales.prototype.getSalary = function () {
+    return Employee.prototype.getSalary.apply(this) + (this.performance * 0.03);    
+};
+
+function Manager(name, baseSalary, performance) {
+    Employee.call(this, name, baseSalary);
+    this.performance = performance;
+}
+
+Manager.prototype.getSalary = function () {
+    return Employee.prototype.getSalary.apply(this) + (this.performance)
+};
+
+var rick = new Sales("Rick", 22000, 45000);
+console.log(rick.getSalary());
+
+var jacky = new Manager("Jacky", 22000, 10000);
+console.log(jacky.getSalary());
+                            </code>
+                        </pre>
+                    </figure>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
