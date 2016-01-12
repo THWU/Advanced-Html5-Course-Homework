@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Object</title>
+    <link href="css/docs.min.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+        body {
+            min-height: 2000px;
+            padding-top: 70px;
+        }
+        
+        .iframe {
+            width: 100%;
+            min-height: 500px;
+        }
+    </style>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="js/object.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        $(document).load(function() {
+
+        });
+    </script>
+</head>
+
+<body>
+    <div class="container bs-docs-container">
+        <div class="row">
+            <div class="col-md-9" role="mail">
+                <div class="bs-docs-section">
+                    <h1 id="Object" class="page-header">
+                    物件 (Object)
+                    </h1>
+                    <h2 class="code-inline">
+                        定義
+                    </h2>
+                    <div class="bs-example">
+                        物件定義
+                    </div>
+                    <figure class="highlight">
+                        <pre>
+                            <code class="language-html" data-lang="html">
+var obj = { 
+    property1 : value1, 
+    property1 : value2, 
+};
+                            </code>
+                        </pre>
+                    </figure>
+                    <h2 class="code-inline">
+                        宣告
+                    </h2>
+                    <div class="bs-example">
+                        宣告一個 Student 物件
+                    </div>
+                    <figure class="highlight">
+                        <pre>
+                            <code class="language-html" data-lang="html">
+var student = {
+    name: "Resnick",
+    contact: {
+        email: "resnick1223@gmail.com",
+        phone: "0910654720"
+    }
+}
+                            </code>
+                        </pre>
+                    </figure>
+                    <h2 class="code-inline">
+                        內容
+                    </h2>
+                    <div class="bs-example">
+                        取得物件內容
+                    </div>
+                    <figure class="highlight">
+                        <pre>
+                            <code class="language-html" data-lang="html">
+var student1 = {
+    name: "ABC",
+    phone: "0912345678",
+    city: "taipei",
+    sayHello: function() {
+        document.write("My name is ", this.name);
+    }
+}
+student1.name;
+student1.phone;
+student1.city;
+student1.sayHello();
+                            </code>
+                        </pre>
+                    </figure>
+                </div>
+                <div class="bs-docs-section">
+                    <h1 id="Object" class="page-header">
+                    類別 (Class)
+                    </h1>
+                    <h2 class="">
+                        定義
+                    </h2>
+                    <p>類別 可以當做一個範本</p>
+                    <div class="bs-example">
+                        類別定義
+                    </div>
+                    <figure class="highlight">
+                        <pre>
+                            <code class="language-html" data-lang="html">
+function ClassName (property1_value, property2_value, property3_value) {
+    
+    this.property1 = property1_value;
+    this.property2 = property2_value;
+    this.property3 = property3_value;
+}
+                            </code>
+                        </pre>
+                    </figure>
+                    <div class="bs-example">
+                        Student 類別
+                    </div>
+                    <figure class="highlight">
+                        <pre>
+                            <code class="language-html" data-lang="html">
+function Student(name, phone, isHappy) {
+    
+    this.name = name;
+    this.phone = phone;
+    this.isHappy = isHappy;
+    this.toString = function() {
+        return "學生姓名:" + this.name + " 學生電話:" + this.phone;
+    };
+    
+}
+                            </code>
+                        </pre>
+                    </figure>
+                    <h2 class="">
+                        新增
+                    </h2>
+                    <div class="bs-example">
+                        使用類別新增物件
+                    </div>
+                    <figure class="highlight">
+                        <pre>
+                            <code class="language-html" data-lang="html">
+var student3 = new Student("Resnick", "0910654720", true);
+var student4 = new Student("Eric", "0911111111", false);
+var status = student3.isHappy? student3.Name + " 開心" : student3.Name + " 不開心";
+                            </code>
+                        </pre>
+                    </figure>
+                </div>
+                <div class="bs-docs-section">
+                    <h1 id="Object" class="page-header">
+                    原型 (Protype)
+                    </h1>
+                    <h2 class="">
+                        定義
+                    </h2>
+                    <p>原型 可以為類別加上方法</p>
+                    <div class="bs-example">
+                        原型定義
+                    </div>
+                    <figure class="highlight">
+                        <pre>
+                            <code class="language-html" data-lang="html">
+ClassName.prototype.MethodName(inputParameter) {
+    //do something here
+}
+                            </code>
+                        </pre>
+                    </figure>
+                </div>
+                <div class="bs-docs-section">
+                    <h1 id="Object" class="page-header">
+                    繼承
+                    </h1>
+                    <h2 class="">
+                        定義
+                    </h2>
+                    <p>擴充原有的物件，增加原型，減少重覆定義原型</p>
+                    <div class="bs-example">
+                        繼承定義
+                    </div>
+                    <figure class="highlight">
+                        <pre>
+                            <code class="language-html" data-lang="html">
+ClassName.prototype = new ClassName()
+                            </code>
+                        </pre>
+                    </figure>
+                    <h2 class="">
+                        多型 (Polymorphism)
+                    </h2>
+                    <p>繼承後，增加或覆寫 Method</p>
+                    <div class="bs-example">
+                        繼承 Person 後，增加 sayHello Method
+                    </div>
+                    <figure class="highlight">
+                        <pre>
+                            <code class="language-html" data-lang="html">
+Student.prototype = new Persion();
+Student.prototype.constructor = Student;
+Student.prototype.sayHello = function(){
+    alert('hi, I am a student');
+}
+                            </code>
+                        </pre>
+                    </figure>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
