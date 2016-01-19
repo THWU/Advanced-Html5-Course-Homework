@@ -1,7 +1,12 @@
 $(document).ready(function() {
             
-    $('p').fadeOut();
+    //$('p').fadeOut();
     //$('p').fadeIn();
+    var $title = $('#title');
+    
+    $('#titleSwitch').click(function() {
+         $title.toggle('slow');
+    });
     
     var docList = $('a[href$=doc]');
     $('#hide').click(function() {
