@@ -1,18 +1,19 @@
 ﻿
 var myCtx;
+var myConvas;
 var myContext;
 var isDrawing = false;
 
 window.onload = function() {
     
     myCtx = new Ctx("drawingCanvas");
-    myCtx.getObj();
+    myConvas = myCtx.getObj();
     myContext = myCtx.getContext2d();
     //  Start Drawing 畫布在滑鼠左鍵壓下的時候
-    myCtx.convas.onmousedown = startDrawing;
-    myCtx.convas.onmouseup = stopDrawing;          //  Stop Drawing
-    myCtx.convas.onmouseout = stopDrawing;         //  Stop Drawing
-    myCtx.convas.onmousemove = draw;               //  Draw
+    myConvas.onmousedown = startDrawing;
+    myConvas.onmouseup = stopDrawing;          //  Stop Drawing
+    myConvas.onmouseout = stopDrawing;         //  Stop Drawing
+    myConvas.onmousemove = draw;               //  Draw
 };
 
 function Ctx(id) {
@@ -22,6 +23,7 @@ function Ctx(id) {
 
 Ctx.prototype.getObj = function() {
     this.canvas = document.getElementById(this.id);
+    return this.canvas;
 }
 
 Ctx.prototype.getContext2d = function() {
@@ -39,8 +41,8 @@ function startDrawing(e) {
     
     isDrawing = true;
     myContext.beginPath();
-    var mouseX = e.pageX - myCtx.canvas.offsetLeft;
-    var mouseY = e.pageY - myCtx.canvas.offsetTop;
+    var mouseX = e.pageX - myConvas.offsetLeft;
+    var mouseY = e.pageY - myConvas.offsetTop;
     myContext.moveTo(mouseX, mouseY);
 }
 
@@ -48,8 +50,8 @@ function stopDrawing(e) {
     
     isDrawing = false;
     myContext.beginPath();
-    var mouseX = e.pageX - myCtx.canvas.offsetLeft;
-    var mouseY = e.pageY - myCtx.canvas.offsetTop;
+    var mouseX = e.pageX - myConvas.offsetLeft;
+    var mouseY = e.pageY - myConvas.offsetTop;
     myContext.moveTo(mouseX, mouseY);
 }
 
@@ -57,8 +59,8 @@ function draw() {
     
     if (isDrawing) {
         
-        var x = e.pageX - myCtx.canvas.offsetLeft;
-        var y = e.pageY - myCtx.canvas.offsetTop;
+        var x = e.pageX - myConvas.offsetLeft;
+        var y = e.pageY - myConvas.offsetTop;
         myContext.lineTo(x, y);
         myContext.stroke();
     }
