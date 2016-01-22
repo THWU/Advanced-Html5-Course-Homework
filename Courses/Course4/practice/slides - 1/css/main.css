@@ -1,0 +1,16 @@
+@charset "UTF-8";
+
+.slideshow {    
+    position: relative;
+    max-width: 1600px;
+    height: 465px;
+    display: inline;
+    overflow: hidden;
+}
+
+.slideshow img {
+    display: none;
+    position: absolute;
+    left: 50%;
+    margin-left: -800px;
+}

@@ -1,0 +1,72 @@
+@charset "UTF-8";
+
+.slideshow {    
+    position: relative;
+    max-width: 1600px;
+    height: 465px;
+    display: inline;
+    overflow: hidden;
+}
+
+.slideshow img {
+    display: none;
+    position: absolute;
+    left: 50%;
+    margin-left: -800px;
+}
+
+.slideshow-nav a,
+.slideshow-indicator a {
+    background-color: rbga(0, 0, 0, 0);
+    overflow: hidden;
+}
+
+.slideshow-nav a:before,
+.slideshow-indicator a:before {
+    content: url('../img/sprites.png');
+    display: inline-block;
+    font-style: 0;
+    line-height: 0;
+}
+
+.slideshow-nav a {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 72px;
+    height: 72px;
+    margin-top: -36px;
+}
+
+.slideshow-nav a.prev{
+    margin-left: -480px;
+}
+
+.slideshow-nav a.next{
+    margin-left: 408px;
+}
+
+.slideshow-nav a.prev:before{
+    margin-top: -20px;
+}
+
+.slideshow-nav a.next:before{
+    margin-top: -20px;
+    margin-left: -80px;
+}
+
+.slideshow-indicator a {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    margin-left: 3px;
+    margin-right: 3px;
+}
+
+.slideshow-indicator a.active{    
+    cursor: default;
+}
+
+.slideshow-indicator a.disable {
+    display: none;
+}
