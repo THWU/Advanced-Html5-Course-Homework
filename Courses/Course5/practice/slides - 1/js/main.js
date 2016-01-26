@@ -1,5 +1,5 @@
-$(function() {
-    $('.slideshow').each(function() {
+$(function () {
+    $('.slideshow').each(function () {
         var $container = $(this),
             $slideGroup = $container.find('.slideshow-slides'),
             $slides = $slideGroup.find('.slide'),
@@ -12,7 +12,7 @@ $(function() {
             easing = 'easeInOutExpo',
             interval = 3000,
             timer;
-        $slides.each(function(i) {
+        $slides.each(function (i) {
             $(this).css({
                 left: 100 * i + '%'
             });
@@ -29,8 +29,8 @@ $(function() {
         }
 
         function updateNav() {
-            var $navPrev = $nav.find('.prev'), 
-                $navNext = $nav.find('.next'); 
+            var $navPrev = $nav.find('.prev'),
+                $navNext = $nav.find('.next');
             if (currentIndex === 0) {
                 $navPrev.addClass('disabled');
             } else {
@@ -44,7 +44,38 @@ $(function() {
             $indicator.find('a').removeClass('active')
                 .eq(currentIndex).addClass('active');
         }
+        function startTimer() {
+            timer = setInterval(function () {
+                var nextIndex = (currentIndex + 1) % slideCount;
+                goToSlide(nextIndex);
+            }, interval);
+        }
 
-       
+        function stopTimer() {
+            clearInterval(timer);
+        }
+        $nav.on('click', 'a', function (event) {
+            event.preventDefault();
+            if ($(this).hasClass('prev')) {
+                goToSlide(currentIndex - 1);
+            } else {
+                goToSlide(currentIndex + 1);
+            }
+        });
+        $indicator.on('click', 'a', function (event) {
+            event.preventDefault();
+            if (!$(this).hasClass('active')) {
+                goToSlide($(this).index());
+            }
+        });
+
+        $container.on({
+            mouseenter: stopTimer,
+            mouseleave: startTimer
+        });
+
+        goToSlide(currentIndex);
+        startTimer();
+
     });
 });
