@@ -9,7 +9,7 @@ $(function () {
             indicatorHTML = '',
             currentIndex = 0,
             duration = 500,
-            easing = 'easeInOutExpo',
+            easing = 'easeInOutSine',
             interval = 3000,
             timer;
         $slides.each(function (i) {
